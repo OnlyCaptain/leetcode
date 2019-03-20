@@ -8,7 +8,7 @@ source=$(wildcard $(SRC)/*.cpp)
 all: $(BIN)/6.out $(BIN)/7.out $(BIN)/8.out $(BIN)/9.out $(BIN)/10.out \
 $(BIN)/11.out $(BIN)/12.out $(BIN)/15.out $(BIN)/16.out $(BIN)/17.out \
 $(BIN)/18.out $(BIN)/20.out $(BIN)/24.out $(BIN)/25.out $(BIN)/26.out \
-$(BIN)/28.out $(BIN)/29.out
+$(BIN)/28.out $(BIN)/29.out $(BIN)/30.out
 .PHONY: all
 
 $(BIN)/%.out: $(OBJDIR)/%.o
