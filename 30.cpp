@@ -5,7 +5,9 @@
 using namespace std;
 
 vector<int> findSubstring(string s, vector<string>& words) {
-    
+    vector<int> result;
+
+    return result;   
 }
 
 int main()
