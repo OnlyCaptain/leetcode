@@ -6,30 +6,49 @@ using namespace std;
 
 class Solution {
 public:
-    bool judge(bool ifequal, int arg1, int arg2) {
-        if (ifequal) return (arg1 == arg2);
-        else return (arg1 != arg2);
-    }
+    struct union_find {
+        vector<int> id, rank;
+        union_find(int n): id(n), rank(n, 1) {
+            for (int i = 0; i < id.size(); i ++) id[i] = i;
+        }
+        int find(int p) {
+            while (p != id[p]) {
+                id[p] = id[id[p]];
+                p = id[p];
+            }
+            return p;
+        }
+        void connect(int id1, int id2) {
+            int f1 = find(id1), f2 = find(id2);
+            if (f1 != f2) {
+                if (rank[f1] > rank[f2]) {
+                    id[f1] = f2;
+                    rank[f2] += rank[f1];
+                }
+                else {
+                    id[f2] = id[f1];
+                    rank[f1] += rank[f1]; 
+                }
+            }
+        }
+        bool is_connected(int id1, int id2) {
+            return find(id1) == find(id2);
+        }
+    };
+    
     bool equationsPossible(vector<string>& equations) {
-        int size = equations.size();
-        unordered_map<char, int> variables;
-        for (int i = 0; i < size; i ++) {
-            string cur = equations[i];
-            bool ifequal = cur.substr(1,2) == "==" ? true : false;
-            if (variables.count(cur[0])) {
-                if (!variables.count(cur[3])) variables[cur[3]] = ifequal? variables[cur[0]] : variables[cur[0]] + 1;
-                else if (!judge(ifequal, variables[cur[0]], variables[cur[3]])) 
-                    return false;
-            }
-            else {
-                if (ifequal) variables[cur[0]] = variables[cur[3]];
-                else variables[cur[0]] = variables[cur[3]] + 1;
-            }
+        union_find uf(26);
+        for (string equa:equations) {
+            if (equa[1] == '=' && !uf.is_connected(equa[0]-'a', equa[3]-'a')) 
+                uf.connect(equa[0]-'a', equa[3]-'a');
+        }
+        for (string equa:equations) {
+            if (equa[1] == '!' && uf.is_connected(equa[0]-'a', equa[3]-'a'))
+                return false;
         }
         return true;
     }
 };
-
 int main() {
 
 }
