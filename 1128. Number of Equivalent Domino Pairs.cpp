@@ -4,7 +4,6 @@
 #include <algorithm>
 #include <string>
 using namespace std;
-
 class Solution {
 public:
     string generateStr(vector<int>& v) {
@@ -15,9 +14,10 @@ public:
         return ans;
     }
     int chooseTwo(int num) {
+        if (num < 2) return 0;
         int ans = 1;
-        for (int i = num; i > num - 2; i ++) 
-            ans *= num;
+        for (int i = num; i > num - 2; i --) 
+            ans *= i;
         return ans/2;
     }
     int numEquivDominoPairs(vector<vector<int>>& dominoes) {
@@ -30,10 +30,12 @@ public:
         }
         for (auto it = mapping.begin(); it != mapping.end(); it ++) {
             ans += chooseTwo(it->second);
+
         }
         return ans;
     }
 };
+
 
 int main() {
 
