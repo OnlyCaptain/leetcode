@@ -16,25 +16,20 @@ public:
                 type2 = tree[right];
             }
             else if (type1 != tree[right] && type2 != tree[right]) {
-                cout << "update " << left << " | " << right << endl;
-                cout << "count1 " << count1 << " count2 " << count2 << endl;
                 while (count1 != 0 && count2 != 0) {
                     if (tree[left] == type1)
                         count1 --;
                     else count2 --;
                     left ++;
                 }
-                cout << "count1 " << count1 << " count2 " << count2 << endl;
-                cout << "after: left: " << left << endl;
                 if (count1 == 0) {
                     type1 = type2; type2 = tree[right];
-                    count1 = count2; count2 = 1;
+                    count1 = count2; count2 = 0;
                 }
                 else {
-                    type2 = tree[right]; count2 = 1;
+                    type2 = tree[right]; count2 = 0;
                 }
             }
-            cout << "31: left: " << left << " | right: " << right << endl;
             count = max(count, right-left+1);
             if (tree[right] == type1) count1 ++;
             else count2 ++;
