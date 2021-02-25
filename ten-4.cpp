@@ -1,0 +1,31 @@
+#include <random>
+#include <string>
+#include <iostream>
+using namespace std;
+
+char choose(int i) {
+    i %= 10;
+    if (i == 0) return 'a';
+    if (i == 1 || i == 2) return 'b';
+    if (i == 3 || i == 4 || i == 5) return 'c';
+    return 'd';
+}
+
+string selectAd() {
+    string ans;
+    int first = (rand()%10), second = (rand()%10);
+    while (first == second) {
+        first = (rand()%10);
+        second = (rand()%10);
+    }
+    ans += choose(first);
+    ans += choose(second);
+    return ans;
+}
+
+int main() {
+    int n = 5;
+    while (n--) {
+        cout << selectAd() << endl;
+    }
+}
