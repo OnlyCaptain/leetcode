@@ -6,6 +6,7 @@ using namespace std;
 int MaximumCopy(const std::vector<size_t>&s, size_t C, size_t &start_index, size_t &end_index) {
     // 滑动窗口的思想
     // test case: [1,2,3,5,4]
+    // 求出和小于某个数的最大子数组。
     if (C <= 0 || s.size() == 0) {
         start_index = end_index = 0; return 0;
     }

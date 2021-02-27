@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 using namespace std;
+// 给定一个二叉树，每条路径（从根到叶）由节点的值构成一个数，4->0->9，构成409，求所有路径加起来的和。
 
 struct node {
     node* left;

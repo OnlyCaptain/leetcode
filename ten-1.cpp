@@ -6,6 +6,7 @@ using namespace std;
 void printAllSubset(vector<int> nums) {
     int size = nums.size();
     // vector<vector<int>> ans;
+    // 给定一个m大小的数组，列出所有子集
     cout << "[]" << endl;
     if (size == 0) return;
     // 局限性：size 超大的时候可能会溢出，但是小规模数据时具有比较好的性能。
